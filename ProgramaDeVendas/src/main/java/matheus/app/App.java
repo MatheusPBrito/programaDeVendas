@@ -1,6 +1,7 @@
 package matheus.app;
 
 import java.sql.Connection;
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement; 
 import java.sql.SQLException;
@@ -74,9 +75,32 @@ public class App {
                             System.out.println("Erro ao consultar ou inserir no banco de dados: " + e.getMessage());
                         }
                     } 
+                    break;
+                }
+                try {
+                    String command = "SELECT nome FROM produtos";
+                    Statement stmt = connection.createStatement();
+                    ResultSet rs = stmt.executeQuery(command);
+                    String[] produtos = new String[9];
+                    int item = 1; 
+                    while(rs.next()){
+                       produtos[item - 1] = rs.getString("nome");
+                       System.out.println("item " + item + "." + produtos[item - 1]);
+                       item++;
+                    }
+                    System.out.print("Escolha seu produto: ");
+                    int produtoSelecionado = 0;
+                    if(input.hasNextInt())
+                        produtoSelecionado = input.nextInt();
+                    System.out.println("Você comprou " + produtos[produtoSelecionado - 1]);
+                }  
+                catch(Exception e){
+                    e.printStackTrace();
                 }
             } 
+            else {
+              break;
+            }
         }
     }
 }
-
