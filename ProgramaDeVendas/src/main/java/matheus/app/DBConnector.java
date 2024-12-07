@@ -28,7 +28,7 @@ public class DBConnector {
             con.setCatalog("mercado");
 
             try (Statement stmt = con.createStatement()) {
-                String command = "CREATE TABLE IF NOT EXISTS clientes (id INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(30), cpf LONG, telefone LONG)";
+                String command = "CREATE TABLE IF NOT EXISTS clientes (id INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(30), cpf LONG, telefone LONG, ultimoproduto VARCHAR(30))";
                 stmt.executeUpdate(command);
                 command = "CREATE TABLE IF NOT EXISTS produtos (id INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(30), preço FLOAT, categoria VARCHAR(30))";
                 stmt.executeUpdate(command);
